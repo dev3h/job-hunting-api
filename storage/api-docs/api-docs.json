@@ -14,7 +14,7 @@
                 "tags": [
                     "Authentication"
                 ],
-                "summary": "Login",
+                "summary": "Login for API guard",
                 "operationId": "20be90132d4a62e09d891319a5fd32dc",
                 "requestBody": {
                     "required": true,
@@ -60,6 +60,325 @@
                         }
                     }
                 }
+            }
+        },
+        "/api/employee/auth/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login for Employee guard",
+                "operationId": "84ab81dd0aa4c3bb0e3f4f2b534ad396",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/auth/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login for Admin guard",
+                "operationId": "4685ca0913cbc36547a8a8294e62b6d7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/me": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Get authenticated user for API guard",
+                "operationId": "f2a671bff5333a14fbbce6b68bc4c840",
+                "responses": {
+                    "200": {
+                        "description": "Authenticated user data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/employee/me": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Get authenticated user for Employee guard",
+                "operationId": "1aa070f402a5304549ea271be1a3ac1d",
+                "responses": {
+                    "200": {
+                        "description": "Authenticated user data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/me": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Get authenticated user for Admin guard",
+                "operationId": "252666a601d8675fbc09e2fb26927631",
+                "responses": {
+                    "200": {
+                        "description": "Authenticated user data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/refresh": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Refresh token for API guard",
+                "operationId": "b7e9671fb36b95b3a5f7f7a91f897af6",
+                "responses": {
+                    "200": {
+                        "description": "Token refreshed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/employee/refresh": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Refresh token for Employee guard",
+                "operationId": "5310426824fdc8c78b904fe8759a24f9",
+                "responses": {
+                    "200": {
+                        "description": "Token refreshed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/refresh": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Refresh token for Admin guard",
+                "operationId": "a66fe6cab5598de708e639c9d44330c2",
+                "responses": {
+                    "200": {
+                        "description": "Token refreshed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
             }
         },
         "/api/auth/register": {
@@ -111,5 +430,16 @@
             "name": "Authentication",
             "description": "Authentication"
         }
-    ]
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearer_token": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
 }
