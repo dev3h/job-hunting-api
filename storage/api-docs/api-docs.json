@@ -9,6 +9,97 @@
         "version": "1.0"
     },
     "paths": {
+        "/api/employee/job-employ": {
+            "post": {
+                "tags": [
+                    "Job Employ"
+                ],
+                "summary": "Create new job employ",
+                "operationId": "72a593517991300a3748b285129ca67b",
+                "parameters": [
+                    {
+                        "name": "step",
+                        "in": "query",
+                        "description": "Step of the job creation process",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "type",
+                                    "categories",
+                                    "salary_range",
+                                    "required_skills",
+                                    "description",
+                                    "responsibility",
+                                    "qualification",
+                                    "nice_to_have",
+                                    "benefit"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "categories": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "salary_range": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required_skills": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "responsibility": {
+                                        "type": "string"
+                                    },
+                                    "qualification": {
+                                        "type": "string"
+                                    },
+                                    "nice_to_have": {
+                                        "type": "string"
+                                    },
+                                    "benefit": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Job employ created"
+                    }
+                }
+            }
+        },
         "/api/auth/login": {
             "post": {
                 "tags": [
@@ -428,7 +519,11 @@
     "tags": [
         {
             "name": "Authentication",
-            "description": "Authentication"
+            "description": "Authentication related endpoints"
+        },
+        {
+            "name": "Job Employ",
+            "description": "Job employ related endpoints"
         }
     ],
     "components": {

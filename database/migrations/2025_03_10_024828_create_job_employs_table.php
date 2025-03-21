@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('employee_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->tinyInteger('type');
+            $table->json('type');
             $table->json('categories');
-            $table->json('levels');
-            $table->tinyInteger('status');
+            $table->json('levels')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->json('salary_range');
             $table->json('required_skills');
             $table->text('description');
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->text('nice_to_have');
             $table->text('benefit');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
