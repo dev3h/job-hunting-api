@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class AuthenticationController extends Controller
 {
+    public function __construct(protected AuthService $authService)
+    {
+       
+    }
     /**
      * @OA\Post(
      *     summary="Login for API guard",
@@ -94,7 +98,7 @@ class AuthenticationController extends Controller
     public function login(LoginRequest $request)
     {
         $data = $request->validated();
-        return AuthService::login($data, $request);
+        return $this->authService->login($data, $request);
     }
 
     /**
@@ -148,7 +152,7 @@ class AuthenticationController extends Controller
      */
     public function me(Request $request)
     {
-        return AuthService::me($request);
+        return $this->authService->me($request);
     }
 
     /**
@@ -199,7 +203,7 @@ class AuthenticationController extends Controller
      */
     public function refresh(Request $request)
     {
-        return AuthService::refresh($request);
+        return $this->authService->refresh($request);
     }
 
     /**

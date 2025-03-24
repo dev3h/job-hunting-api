@@ -12,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 
 class AuthService
 {
-    public static function login(array $credentials, $request)
+    public function login(array $credentials, $request)
     {
         $tableMap = collect([
             'employee.api.*' => ['model' => Employee::class, 'guard' => 'employee'],
@@ -27,7 +27,7 @@ class AuthService
         return (new self())->respondWithToken($token, $tableMap['guard']);
     }
 
-    public static function refresh($request)
+    public function refresh($request)
     {
         try {
             $guardMap = collect([
@@ -41,7 +41,7 @@ class AuthService
         }
     }
 
-    public static function me($request)
+    public function me($request)
     {
         try {
             $guardMap = collect([
